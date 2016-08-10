@@ -1,0 +1,39 @@
+# Configuration script for the project.
+# Author: Juergen Wohlfeil
+# Execute cmake on this directory to (re)generate the
+# Projectfiles/Makefiles
+
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6.4)
+
+set(PROJECTNAME "agasttest")
+PROJECT(${PROJECTNAME} CXX C)
+
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ".")
+FIND_PACKAGE(OpenCV REQUIRED)
+
+IF(MSVC)
+	include_directories ("./msvc") #Necessary to find stdint if compiling with MSVC
+ENDIF()
+
+
+add_executable (${PROJECTNAME}
+	agast5_8.cc
+	agast5_8_nms.cc
+	agast7_12d.cc
+	agast7_12d_nms.cc
+	agast7_12s.cc
+	agast7_12s_nms.cc
+	AstDetector.cc
+	nonMaximumSuppression.cc
+	oast9_16.cc
+	oast9_16_nms.cc
+	demo.cc
+	agast5_8.h
+	agast7_12d.h
+	agast7_12s.h
+	AstDetector.h
+	cvWrapper.h
+	oast9_16.h
+)
+
+
